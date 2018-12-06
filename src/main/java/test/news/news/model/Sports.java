@@ -23,6 +23,7 @@ public class Sports implements Serializable {
     public String category;
 
     @OneToMany(mappedBy = "sports", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<SportsDataEntity> sportsDataEntities;
 
     public int getSports_id() {

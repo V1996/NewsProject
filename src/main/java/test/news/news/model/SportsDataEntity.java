@@ -1,6 +1,7 @@
 package test.news.news.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 
 
@@ -13,6 +14,7 @@ public class SportsDataEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "sports_id")
+    @JsonBackReference
     private Sports sports;
 
     public Sports getSports() {
@@ -23,18 +25,6 @@ public class SportsDataEntity implements Serializable {
         this.sports = sports;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
-    private int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Column(name="total_result")
     private int total_result;
@@ -48,11 +38,13 @@ public class SportsDataEntity implements Serializable {
     @Column(name="title")
     private String title;
 
+    @Id
     @Column(name="description")
     private String description;
 
     @Column(name="url_to_image")
     private String urlToImage;
+
 
     @Column(name="published_at")
     private String publishedAt;
